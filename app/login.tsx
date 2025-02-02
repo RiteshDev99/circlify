@@ -1,13 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Platform } from 'react-native';
-
-import { ScreenContent } from '~/components/ScreenContent';
+import { Login } from '~/components/auth/Login';
 
 export default function Modal() {
   return (
     <>
-      <ScreenContent path="app/modal.tsx" title="Mjkbfvhbmnxbvhj" />
+      <Login />
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </>
   );
