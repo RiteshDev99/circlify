@@ -5,8 +5,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { StatusBar } from 'expo-status-bar';
 
 import { useColorScheme } from '~/hooks/useColorScheme';
-import { getData } from '~/utils/Savedata';
-
+import { supabase } from '~/utils/supabase';
 SplashScreen.preventAutoHideAsync();
 
 export const unstable_settings = {
@@ -17,10 +16,24 @@ export const unstable_settings = {
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   useEffect(() => {
-    if (getData('auth') !== null) {
+    const setupAuth = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (!session) {
+        router.replace('/login');
+      }
+
+      const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+        if (!session) {
+          router.replace('/login');
+        }
+      });
+
       SplashScreen.hideAsync();
-      router.replace('/login');
-    }
+    };
+
+    setupAuth();
   }, []);
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>

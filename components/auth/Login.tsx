@@ -33,11 +33,9 @@ export const Login = () => {
     if (isLogin) {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) Alert.alert('Error', error.message);
-      else Alert.alert('Success', 'Logged in successfully');
     } else {
       const { error } = await supabase.auth.signUp({ email, password });
       if (error) Alert.alert('Error', error.message);
-      else Alert.alert('Success', 'Account created successfully');
     }
   };
 
