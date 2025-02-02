@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 
 import { EditScreenInfo } from './EditScreenInfo';
+import { Button } from './Button';
 
 type ScreenContentProps = {
   title: string;
@@ -11,6 +12,7 @@ type ScreenContentProps = {
 export const ScreenContent = ({ title, path, children }: ScreenContentProps) => {
   return (
     <View className={styles.container}>
+      <Button title="Open Modal" onPress={() => {}} />
       <Text className={styles.title}>{title}</Text>
       <View className={styles.separator} />
       <EditScreenInfo path={path} />

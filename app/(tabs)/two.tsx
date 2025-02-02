@@ -1,14 +1,16 @@
 import { Stack } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { Platform, StyleSheet, View } from 'react-native';
 
 import { ScreenContent } from '~/components/ScreenContent';
 
 export default function Home() {
   return (
     <>
-      <Stack.Screen options={{ title: 'Tab Two' }} />
+{/* 
+      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} /> */}
       <View style={styles.container}>
-        <ScreenContent path="app/(tabs)/two.tsx" title="Tab Two" />
       </View>
     </>
   );

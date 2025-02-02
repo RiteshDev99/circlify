@@ -1,22 +1,12 @@
 import { Stack } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
-
-import { ScreenContent } from '~/components/ScreenContent';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { Platform } from 'react-native';
 
 export default function Home() {
   return (
     <>
-      <Stack.Screen options={{ title: 'Tab One' }} />
-      <View style={styles.container}>
-        <ScreenContent path="app/(tabs)/index.tsx" title="Tab One" />
-      </View>
+      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-});
