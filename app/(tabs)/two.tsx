@@ -1,24 +1,16 @@
-import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
-
-import { ScreenContent } from '~/components/ScreenContent';
+import { Platform, StyleSheet, View, Text } from 'react-native';
 
 export default function Home() {
   return (
     <>
-{/* 
-      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} /> */}
-      <View style={styles.container}>
+      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+      <View className="flex flex-1">
+        <View className="flex flex-1 items-center justify-center">
+          <Text>Two</Text>
+        </View>
       </View>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-});

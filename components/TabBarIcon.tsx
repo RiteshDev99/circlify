@@ -1,4 +1,4 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import FontAwesome from '@expo/vector-icons/Octicons';
 import { StyleSheet } from 'react-native';
 
 export const TabBarIcon = (props: {
