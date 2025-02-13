@@ -1,41 +1,37 @@
 import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
-
-import { HeaderButton } from '../../components/HeaderButton';
-import { TabBarIcon } from '../../components/TabBarIcon';
+import { Dimensions, Pressable, Text } from 'react-native';
+import { HeaderButton } from '~/components/HeaderButton';
+import { TabBarIcon } from '~/components/TabBarIcon';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
+        animation: 'fade',
+        headerShown: true,
+        headerTitle: '',
+        headerTransparent: true,
         // tabBarActiveBackgroundColor: '#000',
         tabBarPosition: 'bottom',
-        tabBarLabelPosition: 'beside-icon',
+        // tabBarLabelPosition: 'beside-icon',
         tabBarHideOnKeyboard: true,
         tabBarAllowFontScaling: true,
-
         tabBarStyle: {
-          flex: 1,
-          backgroundColor: '#000',
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
-          
-          borderBottomLeftRadius: 10,
-          borderBottomRightRadius: 10,
-          position: 'absolute',
-          
-          bottom: 10,
-          marginHorizontal: 10,
           display: 'flex',
+          flex: 1,
           flexDirection: 'row',
           justifyContent: 'space-between',
+          backgroundColor: '#000',
+          borderRadius: 10,
+          position: 'absolute',
+          bottom: 10,
+          marginHorizontal: 10,
         },
         tabBarItemStyle: {
-          display: 'flex',
           backgroundColor: '#000',
-          borderRadius: 20,
+          borderRadius: 10,
         },
+        tabBarLabelStyle: {},
         tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'gray',
         tabBarButton: (props) => <Pressable {...props} android_ripple={{ color: 'transparent' }} />,
@@ -44,13 +40,13 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, focused }) =>
+          tabBarIcon: ({ color, focused, size }) =>
             focused ? (
-              <TabBarIcon name="star" color={color} />
+              <TabBarIcon name="home" color={color} size={size} />
             ) : (
-              <TabBarIcon name="plus" color={color} />
+              <TabBarIcon name="home" color={color} size={size} />
             ),
-          headerRight: () => (
+          headerLeft: () => (
             <Link href="/modal" asChild>
               <HeaderButton />
             </Link>
@@ -67,6 +63,11 @@ export default function TabLayout() {
             ) : (
               <TabBarIcon name="key" color={color} />
             ),
+          headerLeft: () => (
+            <Link href="/modal" asChild>
+              <HeaderButton />
+            </Link>
+          ),
         }}
       />
     </Tabs>
