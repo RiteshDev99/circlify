@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Platform, View,Text } from 'react-native';
+import { Platform, View, Text } from 'react-native';
+
 import { Button } from '~/components/Button';
 import { supabase } from '~/utils/supabase';
 
