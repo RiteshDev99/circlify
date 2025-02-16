@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native';
 
 type ButtonProps = {
   title: string;
@@ -17,6 +17,6 @@ export const Button = forwardRef<View, ButtonProps>(({ title, ...touchableProps 
 });
 
 const styles = {
-  button: 'items-center bg-indigo-500 rounded-[28px] shadow-md p-4',
+  button: 'items-center bg-indigo-500 rounded-[28px] shadow-md px-16 py-4',
   buttonText: 'text-white text-lg font-semibold text-center',
 };

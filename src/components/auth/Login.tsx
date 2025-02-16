@@ -10,8 +10,8 @@ import {
   Alert,
 } from 'react-native';
 import { Root } from '../Root';
-import { Colors } from '~/constants/Colors';
-import { supabase } from '~/utils/supabase';
+import { Colors } from '~/src/constants/Colors';
+import { supabase } from '~/src/utils/supabase';
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -34,15 +34,7 @@ export const Login = () => {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) Alert.alert('Error', error.message);
     } else {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            name,
-          },
-        },
-      });
+      const { error } = await supabase.auth.signUp({ email, password });
       if (error) Alert.alert('Error', error.message);
     }
   };

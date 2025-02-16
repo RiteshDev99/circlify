@@ -1,10 +1,11 @@
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { Platform } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, Text } from 'react-native';
 
-import { Login } from '~/components/auth/Login';
-import { supabase } from '~/utils/supabase';
+import { Login } from '~/src/components/auth/Login';
+import { supabase } from '~/src/utils/supabase';
+import { Colors } from '~/src/constants/Colors';
 
 export default function Modal() {
   useEffect(() => {
@@ -12,12 +13,12 @@ export default function Modal() {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-      if (session!==null) {
+      if (session !== null) {
         router.replace('/');
       }
 
       const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-        if (session!==null) {
+        if (session !== null) {
           router.replace('/');
         }
       });
@@ -27,8 +28,16 @@ export default function Modal() {
   }, []);
   return (
     <>
-      <Login />
+      <SafeAreaView style={styles.container}>
+        <Login />
+      </SafeAreaView>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.light.background,
+  },
+});
