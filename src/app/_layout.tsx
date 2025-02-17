@@ -42,12 +42,12 @@ export default function RootLayout() {
           headerShown: false,
           navigationBarColor: '#ffffff',
         }}>
-        <Stack.Screen name="(tabs)" options={{ title: 'home' }} />
+        <Stack.Screen name="(tabs)" options={{ title: 'Home' }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen
           name="profile"
-          options={{ headerShown: true, title: 'Profile', animation: 'flip' }}
+          options={{ headerShown: true, title: 'Profile', animation: 'slide_from_right' }}
         />
       </Stack>
       <StatusBar style="auto" />

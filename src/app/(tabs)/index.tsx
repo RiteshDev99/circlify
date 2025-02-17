@@ -1,31 +1,42 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
+  StyleSheet,
   Platform,
   View,
-  Text,
-  SafeAreaView,
-  StyleSheet,
-  Image,
   TouchableOpacity,
+  Text,
+  Image,
   TextInput,
+  Animated,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { DrawerActions } from '@react-navigation/native';
+import { EvilIcons, Feather } from '@expo/vector-icons';
 import { Link } from 'expo-router';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import PostCard from '~/src/components/card/postCard';
+import ScrollView = Animated.ScrollView;
+import { useColorScheme } from 'nativewind';
+import { themeColors } from '~/src/constants/Colors';
 
-export default function Home({ navigation }: any) {
+export default function Index({ navigation }: any) {
+  const { colorScheme } = useColorScheme();
+
+  const textColor = colorScheme === 'light' ? themeColors.light.text : themeColors.dark.text;
+  const searchBarColor =
+    colorScheme === 'light' ? themeColors.light.searchBarColor : themeColors.dark.searchBarColor;
+
   return (
     <>
-      <SafeAreaProvider>
-        <SafeAreaView style={styles.sectionContainer}>
+      <SafeAreaView style={styles.sectionContainer}>
+        <ScrollView>
           <View style={styles.topBar}>
             <View style={styles.topBarItem}>
               <View style={styles.item}>
                 <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
-                  <Image source={require('~/src/assets/icons/menu.png')} style={styles.menuIcon} />
+                  <Feather name="menu" size={28} style={{ color: textColor }} />
                 </TouchableOpacity>
-                <Text style={styles.appName}>Circlify</Text>
+                <Text style={[styles.appName, { color: textColor }]}>Circlify</Text>
               </View>
               <Link href="/profile">
                 <Image
@@ -37,11 +48,8 @@ export default function Home({ navigation }: any) {
               </Link>
             </View>
             <View style={styles.textInput}>
-              <View style={styles.inputContainer}>
-                <Image
-                  source={require('~/src/assets/icons/search.png')}
-                  style={styles.searchIcon}
-                />
+              <View style={[styles.inputContainer, { backgroundColor: searchBarColor }]}>
+                <EvilIcons name="search" size={30} />
                 <TextInput
                   style={styles.inputBox}
                   placeholder="Search here.."
@@ -50,16 +58,18 @@ export default function Home({ navigation }: any) {
               </View>
             </View>
           </View>
+          <PostCard />
+          <PostCard />
+          <PostCard />
           <StatusBar style={Platform.OS === 'ios' ? 'light' : 'light'} />
-        </SafeAreaView>
-      </SafeAreaProvider>
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 }
 const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
-    // backgroundColor: 'red',
   },
   topBar: {
     height: 140,
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
     height: 50,
     width: 350,
     borderRadius: 15,
-    backgroundColor: 'rgba(176,169,169,0.27)',
+    // backgroundColor: 'rgb(255,253,253)',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -110,10 +120,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingHorizontal: 15,
     color: '#282C3F',
-    fontSize: 23,
-  },
-  searchIcon: {
-    height: 65,
-    width: 65,
+    fontSize: 16,
   },
 });

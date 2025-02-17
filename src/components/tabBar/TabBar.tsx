@@ -1,6 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { Entypo, FontAwesome5, Foundation, Ionicons } from '@expo/vector-icons';
+import { useColorScheme } from 'nativewind';
+import { themeColors } from '~/src/constants/Colors';
 
 const TabBarButton: React.FC<TabBarButtonProps> = ({
   onPress,
@@ -19,42 +22,40 @@ const TabBarButton: React.FC<TabBarButtonProps> = ({
 };
 
 const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation }) => {
-  const primaryColor = '#0891b2';
-  const greyColor = '#737373';
+  const primaryColor = '#0A79DF';
+  const { colorScheme } = useColorScheme();
+
+  const textColor = colorScheme === 'light' ? themeColors.light.text : themeColors.dark.text;
+  const tabBarBackgroundColor =
+    colorScheme === 'light'
+      ? themeColors.light.tabBarBackgroundColor
+      : themeColors.dark.tabBarBackgroundColor;
+
+  const tabBarIcon =
+    colorScheme === 'light' ? themeColors.light.tabBarIcon : themeColors.dark.searchBarColor;
 
   const icons: Icons = {
     index: {
-      outline: <Image source={require('~/src/assets/icons/home.png')} style={styles.tabBarIcon} />,
-      filled: (
-        <Image source={require('~/src/assets/icons/home_Fill.png')} style={styles.tabBarIcon} />
-      ),
+      outline: <Ionicons name="home-outline" size={28} color={tabBarIcon} />,
+
+      filled: <Ionicons name="home-sharp" size={28} solid color={tabBarIcon} />,
     },
     video: {
-      outline: <Image source={require('~/src/assets/icons/video.png')} style={styles.tabBarIcon} />,
-      filled: (
-        <Image source={require('~/src/assets/icons/video_Fill.png')} style={styles.tabBarIcon} />
-      ),
+      outline: <Foundation name="play-video" size={28} style={{ color: tabBarIcon }} />,
+      filled: <Entypo name="video" size={28} solid style={{ color: tabBarIcon }} />,
     },
     circle: {
-      outline: (
-        <Image source={require('~/src/assets/icons/circle.png')} style={styles.tabBarIcon} />
-      ),
-      filled: (
-        <Image source={require('~/src/assets/icons/circle_Fill.png')} style={styles.tabBarIcon} />
-      ),
+      outline: <FontAwesome5 name="circle-notch" size={28} style={{ color: tabBarIcon }} />,
+      filled: <FontAwesome5 name="circle-notch" size={28} style={{ color: tabBarIcon }} />,
     },
     setting: {
-      outline: (
-        <Image source={require('~/src/assets/icons/setting.png')} style={styles.tabBarIcon} />
-      ),
-      filled: (
-        <Image source={require('~/src/assets/icons/setting_Fill.png')} style={styles.tabBarIcon} />
-      ),
+      outline: <Ionicons name="settings-outline" size={28} style={{ color: tabBarIcon }} />,
+      filled: <Ionicons name="settings" size={28} style={{ color: tabBarIcon }} />,
     },
   };
 
   return (
-    <View style={styles.tabbar}>
+    <View style={[styles.tabbar, { backgroundColor: tabBarBackgroundColor }]}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label = options.tabBarLabel ?? options.title ?? route.name;
@@ -88,7 +89,7 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
             onPress={onPress}
             onLongPress={onLongPress}
             isFocused={isFocused}
-            color={isFocused ? primaryColor : greyColor}
+            color={isFocused ? primaryColor : textColor}
             label={String(label)}
             icon={icon}
           />
@@ -101,11 +102,10 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
 const styles = StyleSheet.create({
   tabbar: {
     position: 'absolute',
-    bottom: 25,
+    bottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
     marginHorizontal: 20,
     paddingVertical: 15,
     borderRadius: 25,
@@ -119,10 +119,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
-  tabBarIcon: {
-    height: 27,
-    width: 27,
-    resizeMode: 'contain',
+  iconColor: {
+    tintColor: '#0A79DF',
   },
 });
 

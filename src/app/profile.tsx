@@ -25,5 +25,6 @@ export default function profile() {
 const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
+    // backgroundColor: '#fff',
   },
 });

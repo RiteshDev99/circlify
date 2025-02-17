@@ -1,11 +1,11 @@
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect } from 'react';
-import { Platform, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet } from 'react-native';
 
 import { Login } from '~/src/components/auth/Login';
 import { supabase } from '~/src/utils/supabase';
-import { Colors } from '~/src/constants/Colors';
+import { themeColors } from '~/src/constants/Colors';
 
 export default function Modal() {
   useEffect(() => {
@@ -38,6 +38,6 @@ export default function Modal() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    backgroundColor: themeColors.light.background,
   },
 });

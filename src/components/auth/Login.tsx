@@ -10,7 +10,7 @@ import {
   Alert,
 } from 'react-native';
 import { Root } from '../Root';
-import { Colors } from '~/src/constants/Colors';
+import { themeColors } from '~/src/constants/Colors';
 import { supabase } from '~/src/utils/supabase';
 
 export const Login = () => {
@@ -101,7 +101,7 @@ export const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.light.background,
+    backgroundColor: themeColors.light.background,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,

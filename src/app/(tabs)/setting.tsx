@@ -1,10 +1,10 @@
 import React from 'react';
 import { Platform, View, Text, StatusBar } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Setting() {
   return (
-    <SafeAreaProvider>
+    <>
       <SafeAreaView style={{ flex: 1 }}>
         <View>
           <Text>Setting</Text>
@@ -15,6 +15,6 @@ export default function Setting() {
         backgroundColor="transparent"
         translucent
       />
-    </SafeAreaProvider>
+    </>
   );
 }
