@@ -6,6 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 
 import { useColorScheme } from '~/src/hooks/useColorScheme';
 import { supabase } from '~/src/utils/supabase';
+import { themeColors } from '~/src/constants/Colors';
 SplashScreen.preventAutoHideAsync();
 
 export const unstable_settings = {
@@ -34,13 +35,18 @@ export default function RootLayout() {
 
     setupAuth();
   }, []);
+  const NavigationBgColor =
+    colorScheme === 'light'
+      ? themeColors.light.navigationBarBackgroundColor
+      : themeColors.dark.navigationBarBackgroundColor;
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack
         screenOptions={{
           animation: 'slide_from_right',
           headerShown: false,
-          navigationBarColor: '#ffffff',
+          navigationBarColor: NavigationBgColor,
         }}>
         <Stack.Screen name="(tabs)" options={{ title: 'Home' }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />

@@ -32,24 +32,24 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
       : themeColors.dark.tabBarBackgroundColor;
 
   const tabBarIcon =
-    colorScheme === 'light' ? themeColors.light.tabBarIcon : themeColors.dark.searchBarColor;
+    colorScheme === 'light' ? themeColors.light.tabBarIcon : themeColors.dark.tabBarIcon;
 
   const icons: Icons = {
     index: {
-      outline: <Ionicons name="home-outline" size={28} color={tabBarIcon} />,
+      outline: <Ionicons name="home-outline" size={28} color={textColor} />,
 
       filled: <Ionicons name="home-sharp" size={28} solid color={tabBarIcon} />,
     },
     video: {
-      outline: <Foundation name="play-video" size={28} style={{ color: tabBarIcon }} />,
+      outline: <Foundation name="play-video" size={28} style={{ color: textColor }} />,
       filled: <Entypo name="video" size={28} solid style={{ color: tabBarIcon }} />,
     },
     circle: {
-      outline: <FontAwesome5 name="circle-notch" size={28} style={{ color: tabBarIcon }} />,
+      outline: <FontAwesome5 name="circle-notch" size={28} style={{ color: textColor }} />,
       filled: <FontAwesome5 name="circle-notch" size={28} style={{ color: tabBarIcon }} />,
     },
     setting: {
-      outline: <Ionicons name="settings-outline" size={28} style={{ color: tabBarIcon }} />,
+      outline: <Ionicons name="settings-outline" size={28} style={{ color: textColor }} />,
       filled: <Ionicons name="settings" size={28} style={{ color: tabBarIcon }} />,
     },
   };

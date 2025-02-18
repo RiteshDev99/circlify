@@ -14,10 +14,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { DrawerActions } from '@react-navigation/native';
 import { EvilIcons, Feather } from '@expo/vector-icons';
 import { Link } from 'expo-router';
-import PostCard from '~/src/components/card/postCard';
 import ScrollView = Animated.ScrollView;
 import { useColorScheme } from 'nativewind';
 import { themeColors } from '~/src/constants/Colors';
+import { postCardData } from '~/staticData/postCardData';
+import PostCard from '~/src/components/card/postCard';
 
 export default function Index({ navigation }: any) {
   const { colorScheme } = useColorScheme();
@@ -49,18 +50,20 @@ export default function Index({ navigation }: any) {
             </View>
             <View style={styles.textInput}>
               <View style={[styles.inputContainer, { backgroundColor: searchBarColor }]}>
-                <EvilIcons name="search" size={30} />
+                <EvilIcons name="search" size={30} color={textColor} />
                 <TextInput
-                  style={styles.inputBox}
+                  style={[styles.inputBox, { color: textColor }]}
                   placeholder="Search here.."
-                  placeholderTextColor="#282C3F"
+                  placeholderTextColor={textColor}
                 />
               </View>
             </View>
           </View>
-          <PostCard />
-          <PostCard />
-          <PostCard />
+          <View className=" h-auto pb-36">
+            {postCardData.map((item, index) => (
+              <PostCard key={index} userData={item} />
+            ))}
+          </View>
           <StatusBar style={Platform.OS === 'ios' ? 'light' : 'light'} />
         </ScrollView>
       </SafeAreaView>
@@ -109,7 +112,11 @@ const styles = StyleSheet.create({
     height: 50,
     width: 350,
     borderRadius: 15,
-    // backgroundColor: 'rgb(255,253,253)',
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 10 },
+    shadowRadius: 10,
+    shadowOpacity: 0.1,
+    elevation: 5,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -119,7 +126,6 @@ const styles = StyleSheet.create({
     width: 285,
     borderRadius: 15,
     paddingHorizontal: 15,
-    color: '#282C3F',
     fontSize: 16,
   },
 });
