@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StyleSheet,
   Platform,
@@ -12,21 +12,26 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DrawerActions } from '@react-navigation/native';
-import { EvilIcons, Feather } from '@expo/vector-icons';
+import { EvilIcons, Feather, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import ScrollView = Animated.ScrollView;
 import { useColorScheme } from 'nativewind';
 import { themeColors } from '~/src/constants/Colors';
 import { postCardData } from '~/staticData/postCardData';
 import PostCard from '~/src/components/card/postCard';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 export default function Index({ navigation }: any) {
   const { colorScheme } = useColorScheme();
-
+  // @ts-ignore
+  const refRBSheet = useRef<RBSheet | null>(null);
   const textColor = colorScheme === 'light' ? themeColors.light.text : themeColors.dark.text;
   const searchBarColor =
     colorScheme === 'light' ? themeColors.light.searchBarColor : themeColors.dark.searchBarColor;
-
+  const BottomSheetBgColor =
+    colorScheme === 'light'
+      ? themeColors.light.bottomSheetBgColor
+      : themeColors.dark.bottomSheetBgColor;
   return (
     <>
       <SafeAreaView style={styles.sectionContainer}>
@@ -59,13 +64,55 @@ export default function Index({ navigation }: any) {
               </View>
             </View>
           </View>
-          <View className=" h-auto pb-36">
+          <View className="h-auto pb-36 ">
             {postCardData.map((item, index) => (
               <PostCard key={index} userData={item} />
             ))}
           </View>
           <StatusBar style={Platform.OS === 'ios' ? 'light' : 'light'} />
         </ScrollView>
+        <TouchableOpacity className="absolute" onPress={() => refRBSheet.current.open()}>
+          <View style={styles.actionBtn}>
+            <MaterialIcons name="add" size={30} style={{ color: '#fff' }} />
+          </View>
+        </TouchableOpacity>
+        <RBSheet
+          ref={refRBSheet}
+          height={220}
+          openDuration={400}
+          closeDuration={400}
+          customStyles={{
+            container: [styles.sheetContainer, { backgroundColor: BottomSheetBgColor }],
+            wrapper: styles.sheetWrapper,
+          }}>
+          <Text className="text-center text-xl font-semibold mt-2" style={{color:textColor}}>Choose Option</Text>
+          <View className=" flex-1 flex-row  items-center justify-evenly ">
+            <Link
+              href="/mediaPost"
+              onPress={() => {
+                refRBSheet.current?.close();
+              }}>
+              <View
+                className=" h-40 w-40 flex-col items-center justify-center gap-3 rounded-2xl border"
+                style={{ borderColor: textColor }}>
+                <Feather name="image" size={35} color={textColor} />
+                <Text style={[styles.postName, { color: textColor }]}>Post</Text>
+              </View>
+            </Link>
+            <Link
+              href="/reelPost"
+              onPress={() => {
+                refRBSheet.current?.close();
+              }}>
+              <View
+                className=" h-40 w-40 flex-col items-center justify-center gap-3  rounded-2xl border"
+                style={{ borderColor: textColor }}>
+                <Ionicons name="videocam-outline" size={38} color={textColor} />
+                <Text style={[styles.postName, { color: textColor }]}>Reel</Text>
+              </View>
+            </Link>
+          </View>
+        </RBSheet>
       </SafeAreaView>
     </>
   );
@@ -127,5 +174,29 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingHorizontal: 15,
     fontSize: 16,
+  },
+  actionBtn: {
+    position: 'absolute',
+    left: 344,
+    top: Platform.OS === 'ios' ? 665 : 690,
+    height: 64,
+    width: 64,
+    transform: [{ translateX: -32 }],
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 32,
+    backgroundColor: '#0A79DF',
+  },
+  sheetContainer: {
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  sheetWrapper: {
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  postName: {
+    fontSize: 18,
+    fontWeight: 'semibold',
   },
 });

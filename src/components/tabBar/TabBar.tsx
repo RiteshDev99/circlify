@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { Entypo, FontAwesome5, Foundation, Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from 'nativewind';
@@ -102,18 +102,20 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
 const styles = StyleSheet.create({
   tabbar: {
     position: 'absolute',
-    bottom: 20,
+    bottom: Platform.OS === 'ios' ? 40 : 5,
+    left: 20,
+    right: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginHorizontal: 20,
     paddingVertical: 15,
     borderRadius: 25,
-    shadowColor: 'black',
+    backgroundColor: 'white',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 10 },
-    shadowRadius: 10,
     shadowOpacity: 0.1,
-    elevation: 5,
+    shadowRadius: 10,
+    elevation: 10,
   },
   tabbarItem: {
     flex: 1,

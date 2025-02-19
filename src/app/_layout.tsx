@@ -55,6 +55,14 @@ export default function RootLayout() {
           name="profile"
           options={{ headerShown: true, title: 'Profile', animation: 'slide_from_right' }}
         />
+        <Stack.Screen
+          name="reelPost"
+          options={{ headerShown: true, title: 'ReelPost', animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="mediaPost"
+          options={{ headerShown: true, title: 'MediaPost', animation: 'slide_from_right' }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
