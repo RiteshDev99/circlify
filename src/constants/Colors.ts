@@ -5,8 +5,10 @@ const tintColorDark = '#fff';
 const bottomBorderColor = '#9CA3AF';
 export const themeColors = {
   light: {
+    backgroundColor: '#fff',
     text: '#000000',
     tabBarIcon: '#0A79DF',
+    placeholderColor: 'rgba(64,66,66,0.76)',
     tabBarBackgroundColor: '#fff',
     navigationBarBackgroundColor: '#fff',
     bottomSheetBgColor: '#f7f7ff',
@@ -19,6 +21,8 @@ export const themeColors = {
     tabIconSelected: tintColorLight,
   },
   dark: {
+    backgroundColor: '#050505',
+    placeholderColor: '#7B8788',
     text: '#fff',
     tabBarIcon: '#0A79DF',
     tabBarBackgroundColor: '#050505',

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import {
   StyleSheet,
   Platform,
@@ -25,16 +25,20 @@ export default function Index({ navigation }: any) {
   const { colorScheme } = useColorScheme();
   // @ts-ignore
   const refRBSheet = useRef<RBSheet | null>(null);
+
+  const BackgroundColor =
+    colorScheme === 'light' ? themeColors.light.backgroundColor : themeColors.dark.backgroundColor;
   const textColor = colorScheme === 'light' ? themeColors.light.text : themeColors.dark.text;
   const searchBarColor =
     colorScheme === 'light' ? themeColors.light.searchBarColor : themeColors.dark.searchBarColor;
+
   const BottomSheetBgColor =
     colorScheme === 'light'
       ? themeColors.light.bottomSheetBgColor
       : themeColors.dark.bottomSheetBgColor;
   return (
     <>
-      <SafeAreaView style={styles.sectionContainer}>
+      <SafeAreaView style={[styles.sectionContainer, { backgroundColor: BackgroundColor }]}>
         <ScrollView>
           <View style={styles.topBar}>
             <View style={styles.topBarItem}>
@@ -79,13 +83,13 @@ export default function Index({ navigation }: any) {
         <RBSheet
           ref={refRBSheet}
           height={220}
-          openDuration={400}
-          closeDuration={400}
           customStyles={{
             container: [styles.sheetContainer, { backgroundColor: BottomSheetBgColor }],
             wrapper: styles.sheetWrapper,
           }}>
-          <Text className="text-center text-xl font-semibold mt-2" style={{color:textColor}}>Choose Option</Text>
+          <Text className="mt-2 text-center text-xl font-semibold" style={{ color: textColor }}>
+            Choose Option
+          </Text>
           <View className=" flex-1 flex-row  items-center justify-evenly ">
             <Link
               href="/mediaPost"

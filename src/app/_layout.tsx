@@ -47,24 +47,40 @@ export default function RootLayout() {
           animation: 'slide_from_right',
           headerShown: false,
           navigationBarColor: NavigationBgColor,
+          headerStyle: {
+            backgroundColor: NavigationBgColor,
+          },
         }}>
         <Stack.Screen name="(tabs)" options={{ title: 'Home' }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen
           name="profile"
-          options={{ headerShown: true, title: 'Profile', animation: 'slide_from_right' }}
+          options={{
+            headerShown: true,
+            title: 'Profile',
+            animation: 'slide_from_right',
+            headerStyle: { backgroundColor: NavigationBgColor },
+          }}
         />
         <Stack.Screen
           name="reelPost"
-          options={{ headerShown: true, title: 'ReelPost', animation: 'slide_from_right' }}
+          options={{
+            headerShown: true,
+            title: 'ReelPost',
+            headerStyle: { backgroundColor: NavigationBgColor },
+          }}
         />
         <Stack.Screen
           name="mediaPost"
-          options={{ headerShown: true, title: 'MediaPost', animation: 'slide_from_right' }}
+          options={{
+            headerShown: true,
+            title: 'MediaPost',
+            headerStyle: { backgroundColor: NavigationBgColor },
+          }}
         />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
     </ThemeProvider>
   );
 }

@@ -3,28 +3,35 @@ import React from 'react';
 import { Platform, View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import { Button } from '~/src/components/Button';
 import { supabase } from '~/src/utils/supabase';
+import { useColorScheme } from 'nativewind';
+import { themeColors } from '~/src/constants/Colors';
 
-export default function profile() {
+export default function Profile() {
+  const { colorScheme } = useColorScheme();
+  const BackgroundColor =
+    colorScheme === 'light' ? themeColors.light.backgroundColor : themeColors.dark.backgroundColor;
+
   return (
-    <>
-      <SafeAreaView style={styles.sectionContainer}>
-        <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
-        <View className="flex-1 items-center justify-center">
-          <Text>Profile</Text>
-          <Button
-            title="Logout"
-            onPress={async () => {
+    <SafeAreaView style={[styles.sectionContainer, { backgroundColor: BackgroundColor }]}>
+      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Profile</Text>
+        <Button
+          title="Logout"
+          onPress={async () => {
+            try {
               await supabase.auth.signOut();
-            }}
-          />
-        </View>
-      </SafeAreaView>
-    </>
+            } catch (error) {
+              console.error('Logout failed:', error);
+            }
+          }}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
-    // backgroundColor: '#fff',
   },
 });
