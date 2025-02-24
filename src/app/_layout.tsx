@@ -64,10 +64,10 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen
-          name="reelPost"
+          name="videoPost"
           options={{
             headerShown: true,
-            title: 'ReelPost',
+            title: 'VideoPost',
             headerStyle: { backgroundColor: NavigationBgColor },
           }}
         />

@@ -17,7 +17,15 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
-      ]
+      ],
+      [
+        "expo-video",
+        {
+          "supportsBackgroundPlayback": true,
+          "supportsPictureInPicture": true
+        }
+      ],
+      "react-native-compressor"
     ],
     "experiments": {
       "typedRoutes": true,
@@ -31,7 +39,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#11181C"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },

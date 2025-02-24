@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Animated,
   Image,
   ScrollView,
   StyleSheet,
@@ -13,6 +12,7 @@ import { useColorScheme } from 'nativewind';
 import { themeColors } from '~/src/constants/Colors';
 import { EvilIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+
 const MediaPost = () => {
   const [image, setImage] = useState<string | null>(null);
   const { colorScheme } = useColorScheme();
@@ -31,7 +31,7 @@ const MediaPost = () => {
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images', 'videos'],
+      mediaTypes: ['images'],
       allowsEditing: true,
       aspect: [1, 1],
       quality: 1,
@@ -43,6 +43,7 @@ const MediaPost = () => {
       setImage(result.assets[0].uri);
     }
   };
+
   return (
     <View className="mediaPost flex-1" style={{ backgroundColor: BackgroundColor }}>
       <ScrollView className="topBar flex-1 p-3">

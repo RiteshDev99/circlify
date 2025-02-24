@@ -104,7 +104,7 @@ export default function Index({ navigation }: any) {
               </View>
             </Link>
             <Link
-              href="/reelPost"
+              href="/videoPost"
               onPress={() => {
                 refRBSheet.current?.close();
               }}>
@@ -112,7 +112,7 @@ export default function Index({ navigation }: any) {
                 className=" h-40 w-40 flex-col items-center justify-center gap-3  rounded-2xl border"
                 style={{ borderColor: textColor }}>
                 <Ionicons name="videocam-outline" size={38} color={textColor} />
-                <Text style={[styles.postName, { color: textColor }]}>Reel</Text>
+                <Text style={[styles.postName, { color: textColor }]}>Video</Text>
               </View>
             </Link>
           </View>
