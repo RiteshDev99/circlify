@@ -1,14 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Entypo, FontAwesome5, Foundation, Ionicons } from '@expo/vector-icons';
+import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from 'nativewind';
 import { themeColors } from '~/src/constants/Colors';
 
 const TabBarButton: React.FC<TabBarButtonProps> = ({
   onPress,
   onLongPress,
-  isFocused,
   color,
   label,
   icon,
@@ -41,8 +40,8 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
       filled: <Ionicons name="home-sharp" size={28} solid color={tabBarIcon} />,
     },
     video: {
-      outline: <Foundation name="play-video" size={28} style={{ color: textColor }} />,
-      filled: <Entypo name="video" size={28} solid style={{ color: tabBarIcon }} />,
+      outline: <Ionicons name="videocam-outline" size={28} style={{ color: textColor }} />,
+      filled: <Ionicons name="videocam" size={28} solid color={tabBarIcon} />,
     },
     circle: {
       outline: <FontAwesome5 name="circle-notch" size={28} style={{ color: textColor }} />,
