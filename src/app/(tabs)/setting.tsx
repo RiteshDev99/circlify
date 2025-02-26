@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
+import { useColorScheme } from 'nativewind';
 import React from 'react';
 import { Platform, View, Text, SafeAreaView, StyleSheet } from 'react-native';
+
 import { Button } from '~/src/components/Button';
-import { supabase } from '~/src/utils/supabase';
-import { useColorScheme } from 'nativewind';
 import { themeColors } from '~/src/constants/Colors';
+import { supabase } from '~/src/utils/supabase';
 
 export default function Setting() {
   const { colorScheme } = useColorScheme();

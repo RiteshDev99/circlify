@@ -22,7 +22,7 @@ export const postCardData: PostCardDataProps[] = [
     postViews: '8.4k views',
     captionSubtitle:
       'Im Getting So Tired of jordan peterson That im gonna Start Calling Him jordan Jenkins.',
-    postImage: 'https://typli.ai/_next/image?url=%2Fai-content-planner.png&w=1200&q=75',
+    postImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFM65SfT5U01eAfKAH1UvIvr3dGPRKDWEC3kMDr0KGZfq8zhrzACOAcnug3DwdzwkUcpA&usqp=CAU',
     likes: '1.1K',
     comments: '50',
     rating: '10',

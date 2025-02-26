@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useColorScheme } from 'nativewind';
-import { themeColors } from '~/src/constants/Colors';
 import * as ImagePicker from 'expo-image-picker';
 import { useVideoPlayer, VideoView } from 'expo-video';
+import { useColorScheme } from 'nativewind';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+
+import { themeColors } from '~/src/constants/Colors';
 
 const VideoPost = () => {
   const { colorScheme } = useColorScheme();

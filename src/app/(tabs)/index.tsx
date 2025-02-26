@@ -1,5 +1,7 @@
+import { EvilIcons, Feather, Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   StyleSheet,
   Platform,
@@ -10,22 +12,23 @@ import {
   TextInput,
   Animated,
 } from 'react-native';
+import RBSheet from 'react-native-raw-bottom-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { DrawerActions } from '@react-navigation/native';
-import { EvilIcons, Feather, Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { Link } from 'expo-router';
+
 import ScrollView = Animated.ScrollView;
+
+// eslint-disable-next-line import/order
 import { useColorScheme } from 'nativewind';
+
+import PostCard from '~/src/components/card/postCard';
 import { themeColors } from '~/src/constants/Colors';
 import { postCardData } from '~/staticData/postCardData';
-import PostCard from '~/src/components/card/postCard';
-import RBSheet from 'react-native-raw-bottom-sheet';
 
 export default function Index({ navigation }: any) {
   const { colorScheme } = useColorScheme();
   // @ts-ignore
   const refRBSheet = useRef<RBSheet | null>(null);
-
+  const [SearchBarToggle, setSearchBarToggle] = useState<boolean>(false);
   const BackgroundColor =
     colorScheme === 'light' ? themeColors.light.backgroundColor : themeColors.dark.backgroundColor;
   const textColor = colorScheme === 'light' ? themeColors.light.text : themeColors.dark.text;
@@ -36,6 +39,10 @@ export default function Index({ navigation }: any) {
     colorScheme === 'light'
       ? themeColors.light.bottomSheetBgColor
       : themeColors.dark.bottomSheetBgColor;
+
+  const toggleSearchBar = () => {
+    setSearchBarToggle((prev) => !prev);
+  };
   return (
     <>
       <SafeAreaView style={[styles.sectionContainer, { backgroundColor: BackgroundColor }]}>
@@ -43,8 +50,8 @@ export default function Index({ navigation }: any) {
           <View style={styles.topBar}>
             <View style={styles.topBarItem}>
               <View style={styles.item}>
-                <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
-                  <Feather name="menu" size={28} style={{ color: textColor }} />
+                <TouchableOpacity onPress={toggleSearchBar}>
+                  <Feather name="search" size={28} style={{ color: textColor }} />
                 </TouchableOpacity>
                 <Text style={[styles.appName, { color: textColor }]}>Circlify</Text>
               </View>
@@ -57,18 +64,20 @@ export default function Index({ navigation }: any) {
                 />
               </Link>
             </View>
-            <View style={styles.textInput}>
-              <View style={[styles.inputContainer, { backgroundColor: searchBarColor }]}>
-                <EvilIcons name="search" size={30} color={textColor} />
-                <TextInput
-                  style={[styles.inputBox, { color: textColor }]}
-                  placeholder="Search here.."
-                  placeholderTextColor={textColor}
-                />
+            {SearchBarToggle && (
+              <View style={styles.textInput}>
+                <View style={[styles.inputContainer, { backgroundColor: searchBarColor }]}>
+                  <EvilIcons name="search" size={30} color={textColor} />
+                  <TextInput
+                    style={[styles.inputBox, { color: textColor }]}
+                    placeholder="Search here.."
+                    placeholderTextColor={textColor}
+                  />
+                </View>
               </View>
-            </View>
+            )}
           </View>
-          <View className="h-auto pb-36 ">
+          <View className="mt-3 h-auto  pb-36">
             {postCardData.map((item, index) => (
               <PostCard key={index} userData={item} />
             ))}
@@ -126,7 +135,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   topBar: {
-    height: 140,
+    height: 'auto',
     width: '100%',
   },
   profileImage: {
@@ -158,6 +167,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 13,
   },
   inputContainer: {
     height: 50,

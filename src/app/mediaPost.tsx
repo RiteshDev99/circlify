@@ -1,3 +1,6 @@
+import { EvilIcons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
+import { useColorScheme } from 'nativewind';
 import React, { useState } from 'react';
 import {
   Image,
@@ -8,10 +11,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useColorScheme } from 'nativewind';
+
 import { themeColors } from '~/src/constants/Colors';
-import { EvilIcons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
 
 const MediaPost = () => {
   const [image, setImage] = useState<string | null>(null);
@@ -30,7 +31,7 @@ const MediaPost = () => {
       : themeColors.dark.placeholderColor;
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images'],
       allowsEditing: true,
       aspect: [1, 1],

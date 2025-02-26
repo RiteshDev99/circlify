@@ -23,7 +23,6 @@ const TabBarButton: React.FC<TabBarButtonProps> = ({
 const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation }) => {
   const primaryColor = '#0A79DF';
   const { colorScheme } = useColorScheme();
-
   const textColor = colorScheme === 'light' ? themeColors.light.text : themeColors.dark.text;
   const tabBarBackgroundColor =
     colorScheme === 'light'
@@ -32,6 +31,9 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
 
   const tabBarIcon =
     colorScheme === 'light' ? themeColors.light.tabBarIcon : themeColors.dark.tabBarIcon;
+  if (state.routes[state.index].name === 'video') {
+    return null;
+  }
 
   const icons: Icons = {
     index: {
@@ -68,7 +70,6 @@ const TabBar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigation })
             target: route.key,
             canPreventDefault: true,
           });
-
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name, route.params);
           }

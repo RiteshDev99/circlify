@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
+import { useColorScheme } from 'nativewind';
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Image, TextInput } from 'react-native';
-import { useColorScheme } from 'nativewind';
+
 import { themeColors } from '~/src/constants/Colors';
 
 export default function Profile() {
