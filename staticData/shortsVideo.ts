@@ -16,4 +16,8 @@ export const ShortsVideos: ShortVideoProps[] = [
     id: 3,
     url: 'https://videos.pexels.com/video-files/3959606/3959606-uhd_1440_2732_25fps.mp4',
   },
+  {
+    id: 4,
+    url: 'https://videos.pexels.com/video-files/4821113/4821113-uhd_1440_2732_25fps.mp4',
+  },
 ];

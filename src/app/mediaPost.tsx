@@ -48,11 +48,6 @@ const MediaPost = () => {
   return (
     <View className="mediaPost flex-1" style={{ backgroundColor: BackgroundColor }}>
       <ScrollView className="topBar flex-1 p-3">
-        <View className=" mb-1  flex-row justify-end">
-          <TouchableOpacity className="rounded-full bg-blue-600 px-6 py-2 shadow-md">
-            <Text className="text-lg font-semibold text-white">Post</Text>
-          </TouchableOpacity>
-        </View>
         <View className="flex-row items-start gap-2  rounded-2xl">
           <Image
             source={{
@@ -91,13 +86,14 @@ const MediaPost = () => {
         </View>
       </ScrollView>
       <View
-        className="absolute bottom-0 left-0 right-0  h-20  w-full border-t"
+        className="absolute bottom-0 left-0 right-0  max-h-max min-h-20  w-full flex-row items-center justify-between border-t bg-red-300 px-8"
         style={{ borderColor, backgroundColor: BackgroundColor }}>
-        <View className="flex-1 px-8 py-3">
-          <TouchableOpacity onPress={pickImage}>
-            <EvilIcons name="image" size={40} color={iconColor} />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={pickImage}>
+          <EvilIcons name="image" size={40} color={iconColor} />
+        </TouchableOpacity>
+        <TouchableOpacity className="rounded-full bg-blue-600 px-8 py-2 shadow-md">
+          <Text className="text-lg font-semibold text-white">Post</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

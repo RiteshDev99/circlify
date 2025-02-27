@@ -46,6 +46,7 @@ export default function Index({ navigation }: any) {
   return (
     <>
       <SafeAreaView style={[styles.sectionContainer, { backgroundColor: BackgroundColor }]}>
+        <StatusBar style={Platform.OS === 'ios' ? 'light' : 'light'} />
         <ScrollView>
           <View style={styles.topBar}>
             <View style={styles.topBarItem}>
@@ -82,7 +83,6 @@ export default function Index({ navigation }: any) {
               <PostCard key={index} userData={item} />
             ))}
           </View>
-          <StatusBar style={Platform.OS === 'ios' ? 'light' : 'light'} />
         </ScrollView>
         <TouchableOpacity className="absolute" onPress={() => refRBSheet.current.open()}>
           <View style={styles.actionBtn}>
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   actionBtn: {
     position: 'absolute',
     left: 344,
-    top: Platform.OS === 'ios' ? 665 : 690,
+    top: Platform.OS === 'ios' ? 680 : 690,
     height: 64,
     width: 64,
     transform: [{ translateX: -32 }],

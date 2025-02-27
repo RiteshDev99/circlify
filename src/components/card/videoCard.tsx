@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, Platform, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { AntDesign, EvilIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useColorScheme } from 'nativewind';
 import { themeColors } from '~/src/constants/Colors';
@@ -15,14 +15,14 @@ const VideoCard = ({ shorts }: { shorts: ShortVideoProps }) => {
     player.play();
   });
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className="h-screen-safe w-full ">
       <VideoView
         style={StyleSheet.absoluteFillObject}
         player={player}
         allowsFullscreen
         allowsPictureInPicture
       />
-      <View className="absolute bottom-0  mx-3 mb-16  h-auto flex-row items-center gap-3">
+      <View className="absolute bottom-0  mx-3 mb-8  h-auto flex-row items-center gap-3">
         <Image
           source={{
             uri: 'https://media.istockphoto.com/id/2182084297/photo/closeup-photo-of-young-impressed-funny-student-man-wear-gray-t-shirt-touch-cheeks-shocked-low.jpg?s=612x612&w=0&k=20&c=aJZ0ZzIDzpdkNuqOe7TZUdbtekmJ0yFR4p9U_c0B_ZM=',
@@ -34,9 +34,13 @@ const VideoCard = ({ shorts }: { shorts: ShortVideoProps }) => {
         </Text>
       </View>
       <View style={styles.actionBtn}>
-        <AntDesign name="hearto" size={25} style={{ color: textColor }} />
-        <EvilIcons name="comment" size={30} style={{ color: textColor }} />
-        <MaterialCommunityIcons name="share-outline" size={32} style={{ color: textColor }} />
+        <TouchableOpacity>
+          <AntDesign name="hearto" size={30} style={{ color: textColor }} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <EvilIcons name="comment" size={34} style={{ color: textColor }} />
+        </TouchableOpacity>
+        <MaterialCommunityIcons name="share-outline" size={35} style={{ color: textColor }} />
       </View>
     </SafeAreaView>
   );
@@ -44,10 +48,10 @@ const VideoCard = ({ shorts }: { shorts: ShortVideoProps }) => {
 const styles = StyleSheet.create({
   actionBtn: {
     position: 'absolute',
-    left: 360,
-    top: Platform.OS === 'ios' ? 500 : 570,
+    left: 380,
+    top: Platform.OS === 'ios' ? 540 : 560,
     height: 190,
-    width: 60,
+    width: 'auto',
     transform: [{ translateX: -32 }],
     flexDirection: 'column',
     alignItems: 'center',
